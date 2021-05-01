@@ -24,8 +24,15 @@
         <title>hospital</title>
     </head>
     <body>
+    <script>
+        $(document).ready(function() {
+            $("#phone").mask("+7-999-999-99-99");
+        });
+    </script>
     <#include "navbar.ftl">
     <#nested>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="static/js/jquery.maskedinput.min.js"></script>
     </body>
     </html>
 </#macro>

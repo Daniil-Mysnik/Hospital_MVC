@@ -12,13 +12,13 @@
         <div class="form-group row">
             <label for="room" class="col-md-4 col-form-label text-md-right">Кабинет</label>
             <div class="col-md-6">
-                <input type="text" id="speciality" class="form-control" name="room">
+                <input type="text" id="room" class="form-control" name="room">
             </div>
         </div>
         <div class="form-group row">
             <label for="dateStart" class="col-md-4 col-form-label text-md-right">Дата начала действия расписания</label>
             <div class="col-md-6">
-                <input type="date" name="dateStart" id="dateStart" value="${.now?date}">
+                <input type="date" name="dateStart" id="dateStart">
             </div>
         </div>
         <div class="form-group row">
@@ -30,137 +30,134 @@
         </div>
 
         <div class="form-group px-5 mx-5 pb-4">
-            <input class="form-check-input" type="checkbox" data-toggle="collapse" data-target=".multi-collapse"
+            <input class="form-check-input" type="checkbox" name="isWeekDaysSchedule" id="isWeekDaysSchedule" value="isWeekDaysSchedule" data-toggle="collapse" data-target=".multi-collapse"
                    aria-expanded="true" aria-controls="multiCollapseExample1 multiCollapseExample2">Расписание по
             дням</input>
 
             <div class="collapse multi-collapse show" id="multiCollapseExample1">
                 <div class="form-group row">
-                    <label for="timeStart" class="col-md-4 col-form-label text-md-right">Начало рабочего дня</label>
+                    <label for="timeStartEveryDay" class="col-md-4 col-form-label text-md-right">Начало рабочего дня</label>
                     <div class="col-md-6">
-                        <input type="time" name="timeStart" id="timeStart">
+                        <input type="time" name="timeStartEveryDay" id="timeStartEveryDay">
                     </div>
-                    <label for="timeEnd" class="col-md-4 col-form-label text-md-right">Окончание рабочего дня</label>
+                    <label for="timeEndEveryDay" class="col-md-4 col-form-label text-md-right">Окончание рабочего дня</label>
                     <div class="col-md-6">
-                        <input type="time" name="timeEnd" id="timeEnd">
+                        <input type="time" name="timeEndEveryDay" id="timeEndEveryDay">
                     </div>
                 </div>
                 <label class="form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="Mon"> Понедельник
+                    <input class="form-check-input" type="checkbox" name="monED" id="monED" value="Mon"> Понедельник
                 </label>
                 <label class="form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="Tue"> Вторник
+                    <input class="form-check-input" type="checkbox" name="tueED" id="tueED" value="Tue"> Вторник
                 </label>
                 <label class="form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="Wed"> Среда
+                    <input class="form-check-input" type="checkbox" name="wedED" id="wedED" value="Wed"> Среда
                 </label>
                 <label class="form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="Thu"> Четверг
+                    <input class="form-check-input" type="checkbox" name="thuED" id="thuED" value="Thu"> Четверг
                 </label>
                 <label class="form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="Fri"> Пятница
+                    <input class="form-check-input" type="checkbox" name="friED" id="friED" value="Fri"> Пятница
                 </label>
             </div>
             <div class="collapse multi-collapse" id="multiCollapseExample2">
-
                 <div>
-                    <input class="form-check-input" type="checkbox" data-toggle="collapse" data-target=".monday"
+                    <input class="form-check-input" type="checkbox" name="monday" id="monday" value="Mon" data-toggle="collapse" data-target=".monday"
                            aria-expanded="true" aria-controls="monday">Понедельник</input>
                     <div class="collapse monday" id="monday">
                         <div class="form-group row">
-                            <label for="timeStart" class="col-md-4 col-form-label text-md-right">Начало рабочего
+                            <label for="timeStartMon" class="col-md-4 col-form-label text-md-right">Начало рабочего
                                 дня</label>
                             <div class="col-md-6">
-                                <input type="time" name="timeStart" id="timeStart">
+                                <input type="time" name="timeStartMon" id="timeStartMon">
                             </div>
-                            <label for="timeEnd" class="col-md-4 col-form-label text-md-right">Окончание рабочего
+                            <label for="timeEndMon" class="col-md-4 col-form-label text-md-right">Окончание рабочего
                                 дня</label>
                             <div class="col-md-6">
-                                <input type="time" name="timeEnd" id="timeEnd">
+                                <input type="time" name="timeEndMon" id="timeEndMon">
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <div>
-                    <input class="form-check-input" type="checkbox" data-toggle="collapse" data-target=".tuesday"
+                    <input class="form-check-input" type="checkbox" name="tuesday" id="tuesday" value="Tue" data-toggle="collapse" data-target=".tuesday"
                            aria-expanded="true" aria-controls="tuesday">Вторник</input>
                     <div class="collapse tuesday" id="tuesday">
                         <div class="form-group row">
-                            <label for="timeStart" class="col-md-4 col-form-label text-md-right">Начало рабочего
+                            <label for="timeStartTue" class="col-md-4 col-form-label text-md-right">Начало рабочего
                                 дня</label>
                             <div class="col-md-6">
-                                <input type="time" name="timeStart" id="timeStart">
+                                <input type="time" name="timeStartTue" id="timeStartTue">
                             </div>
-                            <label for="timeEnd" class="col-md-4 col-form-label text-md-right">Окончание рабочего
+                            <label for="timeEndTue" class="col-md-4 col-form-label text-md-right">Окончание рабочего
                                 дня</label>
                             <div class="col-md-6">
-                                <input type="time" name="timeEnd" id="timeEnd">
+                                <input type="time" name="timeEndTue" id="timeEndTue">
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <div>
-                    <input class="form-check-input" type="checkbox" data-toggle="collapse" data-target=".wednesday"
+                    <input class="form-check-input" type="checkbox" name="wednesday" id="wednesday" value="Wed" data-toggle="collapse" data-target=".wednesday"
                            aria-expanded="true" aria-controls="wednesday">Среда</input>
                     <div class="collapse wednesday" id="wednesday">
                         <div class="form-group row">
-                            <label for="timeStart" class="col-md-4 col-form-label text-md-right">Начало рабочего
+                            <label for="timeStartWed" class="col-md-4 col-form-label text-md-right">Начало рабочего
                                 дня</label>
                             <div class="col-md-6">
-                                <input type="time" name="timeStart" id="timeStart">
+                                <input type="time" name="timeStartWed" id="timeStartWed">
                             </div>
-                            <label for="timeEnd" class="col-md-4 col-form-label text-md-right">Окончание рабочего
+                            <label for="timeEndWed" class="col-md-4 col-form-label text-md-right">Окончание рабочего
                                 дня</label>
                             <div class="col-md-6">
-                                <input type="time" name="timeEnd" id="timeEnd">
+                                <input type="time" name="timeEndWed" id="timeEndWed">
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <div>
-                    <input class="form-check-input" type="checkbox" data-toggle="collapse" data-target=".thursday"
+                    <input class="form-check-input" type="checkbox" name="thursday" id="thursday" value="Thu" data-toggle="collapse" data-target=".thursday"
                            aria-expanded="true" aria-controls="thursday">Четверг</input>
                     <div class="collapse thursday" id="thursday">
                         <div class="form-group row">
-                            <label for="timeStart" class="col-md-4 col-form-label text-md-right">Начало рабочего
+                            <label for="timeStartThu" class="col-md-4 col-form-label text-md-right">Начало рабочего
                                 дня</label>
                             <div class="col-md-6">
-                                <input type="time" name="timeStart" id="timeStart">
+                                <input type="time" name="timeStartThu" id="timeStartThu">
                             </div>
-                            <label for="timeEnd" class="col-md-4 col-form-label text-md-right">Окончание рабочего
+                            <label for="timeEndThu" class="col-md-4 col-form-label text-md-right">Окончание рабочего
                                 дня</label>
                             <div class="col-md-6">
-                                <input type="time" name="timeEnd" id="timeEnd">
+                                <input type="time" name="timeEndThu" id="timeEndThu">
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <div>
-                    <input class="form-check-input" type="checkbox" data-toggle="collapse" data-target=".friday"
+                    <input class="form-check-input" type="checkbox" name="friday" id="friday" value="Fri" data-toggle="collapse" data-target=".friday"
                            aria-expanded="true" aria-controls="friday">Пятница</input>
                     <div class="collapse friday" id="friday">
                         <div class="form-group row">
-                            <label for="timeStart" class="col-md-4 col-form-label text-md-right">Начало рабочего
+                            <label for="timeStartFri" class="col-md-4 col-form-label text-md-right">Начало рабочего
                                 дня</label>
                             <div class="col-md-6">
-                                <input type="time" name="timeStart" id="timeStart">
+                                <input type="time" name="timeStartFri" id="timeStartFri">
                             </div>
-                            <label for="timeEnd" class="col-md-4 col-form-label text-md-right">Окончание рабочего
+                            <label for="timeEndFri" class="col-md-4 col-form-label text-md-right">Окончание рабочего
                                 дня</label>
                             <div class="col-md-6">
-                                <input type="time" name="timeEnd" id="timeEnd">
+                                <input type="time" name="timeEndFri" id="timeEndFri">
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
         </div>
-
         <div class="form-group row">
             <label for="duration" class="col-md-4 col-form-label text-md-right">Продолжительность приёма</label>
             <div class="col-md-6">

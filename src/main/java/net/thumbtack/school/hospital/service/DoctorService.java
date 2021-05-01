@@ -83,9 +83,9 @@ public class DoctorService extends ServiceBase {
         if (dateStart == null)
             dateStart = LocalDate.now();
         if (dateEnd == null)
-            dateEnd = LocalDate.now().plusDays(7);
-        LocalDate finalDateStart = dateStart;
-        LocalDate finalDateEnd = dateEnd;
+            dateEnd = dateStart.plusDays(6);
+        LocalDate finalDateStart = dateStart.minusDays(1);
+        LocalDate finalDateEnd = dateEnd.plusDays(1);
         List<DaySchedule> dayScheduleList = doctor.getDayScheduleList().stream()
                                                                        .filter(daySchedule -> daySchedule.getDate().isAfter(finalDateStart)
                                                                                && daySchedule.getDate().isBefore(finalDateEnd))

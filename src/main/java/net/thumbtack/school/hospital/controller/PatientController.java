@@ -5,6 +5,7 @@ import net.thumbtack.school.hospital.dto.request.LoginRequest;
 import net.thumbtack.school.hospital.dto.request.UpdatePatientRequest;
 import net.thumbtack.school.hospital.dto.response.LoginResponse;
 import net.thumbtack.school.hospital.dto.response.PatientResponse;
+import net.thumbtack.school.hospital.dto.response.UserResponse;
 import net.thumbtack.school.hospital.exceptions.HospitalException;
 import net.thumbtack.school.hospital.model.UserType;
 import net.thumbtack.school.hospital.service.PatientService;
@@ -32,29 +33,22 @@ public class PatientController {
     }
 
     @GetMapping("patientRegister")
-    public String register() {
+    public String register(HttpServletRequest request) {
+        LoginResponse loginResponse = (LoginResponse) request.getSession().getAttribute("login");
+        if (loginResponse != null && loginResponse.getUserResponse().getUserType().equals(UserType.PATIENT)) {
+            return "403";
+        }
         return "registerPatient";
     }
 
     @PostMapping("patientRegister")
-    public String register(@RequestParam String firstName,
-                           @RequestParam String lastName,
-                           @RequestParam String patronymic,
-                           @RequestParam String email,
-                           @RequestParam String address,
-                           @RequestParam String phone,
-                           @RequestParam String login,
-                           @RequestParam String password,
-                           HttpServletRequest request) throws HospitalException {
-        CreatePatientRequest createPatientRequest = new CreatePatientRequest(firstName,
-                                                                             lastName,
-                                                                             patronymic,
-                                                                             login, password,
-                                                                             email,
-                                                                             address,
-                                                                             phone);
-        patientService.create(createPatientRequest);
-        LoginResponse loginResponse = sessionService.create(new LoginRequest(createPatientRequest.getLogin(), createPatientRequest.getPassword()));
+    public String register(@Valid CreatePatientRequest createRq, HttpServletRequest request) throws HospitalException {
+        LoginResponse loginResponse = (LoginResponse) request.getSession().getAttribute("login");
+        if (loginResponse != null && loginResponse.getUserResponse().getUserType().equals(UserType.PATIENT)) {
+            return "403";
+        }
+        patientService.create(createRq);
+        loginResponse = sessionService.create(new LoginRequest(createRq.getLogin(), createRq.getPassword()));
         HttpSession session = request.getSession();
         if (session.getAttribute("login") == null) {
             session.setAttribute("login", loginResponse);
@@ -68,9 +62,15 @@ public class PatientController {
 //        return patientService.get(sessionId, patientId);
 //    }
 
-    @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public PatientResponse update(@CookieValue("JAVASESSIONID") String sessionId, @Valid @RequestBody UpdatePatientRequest request) throws HospitalException {
-        return patientService.update(sessionId, request);
+    @PostMapping("patientUpdate")
+    public String update(@Valid UpdatePatientRequest updateRq, HttpServletRequest request) throws HospitalException {
+        LoginResponse loginResponse = (LoginResponse) request.getSession().getAttribute("login");
+        if (loginResponse == null) {
+            return "403";
+        }
+        PatientResponse patientRs = patientService.update(loginResponse.getSessionId(), updateRq);
+        loginResponse.setUserResponse(patientRs);
+        return "redirect:/account";
     }
 
 }

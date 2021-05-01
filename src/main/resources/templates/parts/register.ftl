@@ -45,7 +45,11 @@
 
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
-                                    Зарегистрироваться
+                                    <#if login??>
+                                        Зарегистрировать
+                                    <#else>
+                                        Зарегистрироваться
+                                    </#if>
                                 </button>
                             </div>
                         </form>

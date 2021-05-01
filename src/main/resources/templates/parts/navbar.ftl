@@ -11,7 +11,7 @@
                     <a class="nav-link" href="${requestcontext.contextPath}/byDoctor">Расписание</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Загрузить</a>
+                    <a class="nav-link" href="#">Список</a>
                 </li>
                 <#if login??>
                     <#if login.getUserResponse().userType.toString() == "ADMIN">
@@ -23,11 +23,15 @@
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                 <a class="dropdown-item" href="${requestcontext.contextPath}/registerDoctor">Доктора</a>
                                 <a class="dropdown-item" href="${requestcontext.contextPath}/patientRegister">Пациента</a>
+                                <a class="dropdown-item" href="${requestcontext.contextPath}/adminRegister">Администратора</a>
                             </div>
                         </div>
                     </#if>
                 </#if>
             </ul>
+        </div>
+        <div class="w-50">
+            <x-clock></x-clock>
         </div>
         <#if login??>
             <div class="navbar-text mr-3">
@@ -48,3 +52,40 @@
         </#if>
     </div>
 </nav>
+
+<script type="text/javascript" src="https://bootstraptema.ru/plugins/2015/x-tag/x-tag-core.min.js"></script>
+
+<style>
+    x-clock {
+        color: rgb(148, 148, 165);
+        font-size:20px;
+    }
+</style>
+
+<script>
+    xtag.register('x-clock', {
+        lifecycle: {
+            created: function(){
+                this.start();
+            }
+        },
+        methods: {
+            start: function(){
+                this.update();
+                this.xtag.interval = setInterval(this.update.bind(this), 1000);
+            },
+            stop: function(){
+                this.xtag.interval = clearInterval(this.xtag.interval);
+            },
+            update: function(){
+                this.textContent = new Date().toLocaleTimeString();
+            }
+        },
+        events: {
+            tap: function(){
+                if (this.xtag.interval) this.stop();
+                else this.start();
+            }
+        }
+    });
+</script>

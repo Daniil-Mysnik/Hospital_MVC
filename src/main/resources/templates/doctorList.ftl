@@ -44,21 +44,14 @@
                                         <td class="text-center"> ${d.getSpeciality()}</td>
                                         <td class="text-center"> ${d.getFreeTickets()}</td>
                                         <td>
-<#--                                            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal"-->
-<#--                                                    data-target="#myModal-${d.getId()}">-->
-<#--                                                -->
-<#--                                            </button>-->
-                                            <form name="my-form" method="get" action="${requestcontext.contextPath}/doctorTickets/${d.getId()}">
-                                                <button type="submit" class="btn btn-primary btn-sm" aria-pressed="true">
-                                                    Талоны
-                                                </button>
-                                            </form>
-<#--                                            <a href="${requestcontext.contextPath}/doctorTickets?id=${d.getId()}" class="btn btn-primary btn-sm" role="button" aria-pressed="true">Талоны</a>-->
+                                            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal"
+                                                    data-target="#myModal-${d.getId()}">
+                                                Талоны
+                                            </button>
                                         </td>
                                     </tr>
                                     <@t.page doctor=d></@t.page>
                                 </#list>
-
                                 </tbody>
                             </table>
                         </div>

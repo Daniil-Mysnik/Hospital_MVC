@@ -2,6 +2,8 @@ package net.thumbtack.school.hospital.model;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -26,6 +28,10 @@ public class DaySchedule implements Comparable<DaySchedule> {
 
     public DaySchedule(LocalDate date, LocalTime timeStart, LocalTime timeEnd, List<Appointment> appointments) {
         this(0, date, timeStart, timeEnd, appointments);
+    }
+
+    public boolean checkDate(Date date) {
+        return this.date.isBefore(date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
     }
 
     public int getId() {

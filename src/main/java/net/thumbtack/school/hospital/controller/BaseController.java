@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import javax.servlet.http.HttpServletRequest;
 
 @Controller
-public class TestController {
+public class BaseController {
 
     @GetMapping("main")
     public String get(Model model, HttpServletRequest request) {

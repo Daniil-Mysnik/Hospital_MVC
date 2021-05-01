@@ -44,7 +44,7 @@ public class SessionController {
     @PostMapping("logout")
     public String logout(@RequestParam String sessionId, HttpServletRequest request) throws HospitalException {
         sessionService.delete(sessionId);
-        request.getSession().setAttribute("login", null);
+        request.getSession().removeAttribute("login");
         return "redirect:/main";
     }
 }
